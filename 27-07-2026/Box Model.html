@@ -1,0 +1,28 @@
+The Box Model is the formula that determines the total space an HTML element takes up on a page.
+
+
+The 4 Layers
+Layer	Description	CSS Property
+Content	The actual text/image	width, height
+Padding	Space inside the border (transparent)	padding
+Border	The line around the element	border
+Margin	Space outside the border (transparent)	margin
+
+<!-- The Formula -->
+ Total Width = width + padding-left + padding-right + border-left + border-right
+Total Height = height + padding-top + padding-bottom + border-top + border-bottom
+
+<!-- Example -->
+ .box {
+    width: 200px;
+    padding: 20px;
+    border: 10px solid black;
+    margin: 30px;
+}
+
+/* Total Width = 200 + 40 + 20 = 260px */
+/* Total Height = 200 + 40 + 20 = 260px */
+/* Margin adds space OUTSIDE: 30px on each side */
+
+The Golden Rule
+Use box-sizing: border-box so you don't have to do math. Then width = total width you want.

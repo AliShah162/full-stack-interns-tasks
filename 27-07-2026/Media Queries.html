@@ -1,0 +1,58 @@
+<!-- Media Queries -->
+<!-- Simple Definition -->
+Media queries let you apply CSS only when certain conditions are met (like screen width, height, orientation).
+
+<!-- Basic Syntax -->
+ @media (condition) {
+    /* CSS rules here */
+}
+
+<!-- Common Breakpoints -->
+Breakpoint	  Size	        Target
+max-width:   480px	  Small phones	Mobile
+max-width:   768px	  Tablets/Phones	Tablet
+min-width:   769px	  Laptops/Desktops	Desktop
+min-width:   1200px	  Large screens	Large Desktop
+<!-- Example -->
+ /* 1. Width-based query */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+    .main {
+        width: 100%;
+    }
+}
+
+/* 2. Min-width (desktop first) */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. Range (between sizes) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .box {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+/* 4. Orientation */
+@media (orientation: landscape) {
+    .header {
+        height: 80px;
+    }
+}
+
+/* 5. Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #111;
+        color: white;
+    }
+}
+
+<!-- The Golden Rule -->
+Use min-width for mobile-first design. Keep breakpoints consistent. Test on real devices.

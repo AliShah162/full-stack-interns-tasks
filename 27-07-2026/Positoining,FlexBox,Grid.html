@@ -1,0 +1,195 @@
+<!-- Positioning -->
+<!-- Simple Definition -->
+Positioning controls how an element is placed in the document and how it moves relative to its normal position.
+
+The 5 Position Values
+Value	       Behavior
+static	       Default. Stays in normal flow.
+relative	   Stays in normal flow, but you can move it using top/left/right/bottom.
+absolute	   Removed from normal flow. Positioned relative to the nearest positioned ancestor.
+fixed	       Removed from normal flow. Positioned relative to the viewport (stays in place when scrolling).
+sticky	       Behaves like relative until it hits a scroll point, then becomes fixed.
+
+<!-- Example -->
+ /* relative - moves 20px from the top */
+.relative-box {
+    position: relative;
+    top: 20px;
+}
+
+/* absolute - positioned 50px from top-left of .container */
+.absolute-box {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+/* fixed - always at the bottom of the screen */
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* sticky - sticks to top when scrolled */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+}
+
+
+
+<!-- Flexbox -->
+<!-- Simple Definition -->
+Flexbox is a one-dimensional layout system for arranging items in rows or columns.
+
+<!-- Key Properties (Parent) -->
+
+.container {
+    display: flex;
+    flex-direction: row;        /* row, column, row-reverse */
+    justify-content: center;    /* horizontal alignment */
+    align-items: center;        /* vertical alignment */
+    flex-wrap: wrap;            /* wrap to next line */
+    gap: 10px;                  /* space between items */
+}
+<!-- Key Properties (Child) -->
+ .item {
+    flex: 1;              /* Grow to fill space */
+    flex-grow: 2;         /* Grow ratio */
+    flex-shrink: 0;       /* Don't shrink */
+    align-self: center;   /* Override parent's align-items */
+}
+
+
+<!-- CSS Grid -->
+<!-- Simple Definition -->
+CSS Grid is a two-dimensional layout system for arranging items in rows AND columns.
+
+<!-- Key Properties (Parent) -->
+ .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
+    grid-template-rows: 100px 200px;    /* 2 rows */
+    gap: 10px;                          /* space between */
+    justify-items: center;              /* horizontal alignment of items */
+    align-items: center;                /* vertical alignment of items */
+}
+
+<!-- Key Properties (Child) -->
+
+.item {
+    grid-column: 1 / 3;   /* Start at column 1, end at column 3 */
+    grid-row: 1 / 2;      /* Start at row 1, end at row 2 */
+}
+<!-- Common Grid Patterns -->
+
+/* 3 equal columns */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+/* Responsive columns (auto-fit) */
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+/* Specific column sizes */
+.grid-specific {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px; /* fixed, flexible, fixed */
+    gap: 10px;
+}
+
+
+<!-- Example -->
+
+<div class="grid-container">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="main">Main Content</div>
+    <div class="footer">Footer</div>
+</div>
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100px 1fr 100px;
+    gap: 10px;
+    height: 100vh;
+}
+
+.header {
+    grid-column: 1 / 3;   /* spans both columns */
+}
+
+.sidebar {
+    grid-row: 2 / 3;      /* middle row */
+}
+
+.main {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.footer {
+    grid-column: 1 / 3;
+}
+
+
+<!-- Responsive Design -->
+<!-- Simple Definition -->
+Responsive design means making your website look good on all screen sizes (desktop, tablet, mobile).
+
+<!-- Key Principles -->
+Principle	            What It Means
+Fluid Grids	            Use percentages instead of fixed widths
+Flexible Images	        Images scale with their container
+Media Queries	        Apply different styles at different screen sizes
+Mobile First	        Design for mobile first, then scale up
+
+<!-- Example Responsive Layout-->
+
+<div class="container">
+    <div class="box">Box 1</div>
+    <div class="box">Box 2</div>
+    <div class="box">Box 3</div>
+</div>
+
+/* Mobile First (default) */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box {
+    background: #333;
+    color: white;
+    padding: 20px;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .box {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+    .box {
+        flex: 1 1 calc(33.33% - 10px);
+    }
+}
+
+<!-- The Golden Rule -->
+Design for mobile first. Use relative units (%, em, rem, vh, vw). Use media queries to adapt.

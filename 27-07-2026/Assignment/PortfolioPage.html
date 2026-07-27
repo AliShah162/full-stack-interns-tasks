@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Nalain Haider Hashmi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1e293b;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 60px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 50%;
+            min-width: 280px;
+        }
+
+        .hero-content .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .hero-content h1 {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .hero-content h1 span {
+            color: #2563eb;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #475569;
+            margin-bottom: 24px;
+            max-width: 450px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1e293b;
+            padding: 12px 28px;
+            border: 2px solid #cbd5e1;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .hero-image {
+            flex: 1 1 40%;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
+
+        /* ---------- SOCIAL LINKS ---------- */
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #475569;
+            font-size: 22px;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #2563eb;
+            transform: translateY(-3px);
+        }
+
+        /* ---------- SKILLS ---------- */
+        .skills {
+            padding: 50px 0 20px;
+        }
+
+        .skills h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+
+        .skills .sub {
+            color: #475569;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 20px 16px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .skill-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-4px);
+        }
+
+        .skill-card .icon {
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+
+        .skill-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ---------- PROJECTS ---------- */
+        .projects {
+            padding: 50px 0;
+        }
+
+        .projects h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+
+        .projects .sub {
+            color: #475569;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.3s, transform 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-6px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-info {
+            padding: 20px 22px 24px;
+        }
+
+        .project-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+
+        .project-info p {
+            color: #475569;
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .project-tags span {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .project-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #1d4ed8;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-image img {
+                max-width: 280px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .skills h2,
+            .projects h2 {
+                font-size: 26px;
+                text-align: center;
+            }
+
+            .skills .sub,
+            .projects .sub {
+                text-align: center;
+            }
+
+            .skill-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 26px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Nalain<span>Haider Hashmi</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#" class="btn-primary" style="padding: 6px 20px; font-size: 14px;">Resume</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <span class="badge">Available for work</span>
+                <h1>I&rsquo;m <span>Nalain Haider Hashmi</span></h1>
+                <p>
+                    I design and build clean, responsive websites and web
+                    applications that solve real problems.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">View Projects</a>
+                    <a href="#" class="btn-secondary">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/Me.jpg" alt="Nalain Haider" />
+            </div>
+        </section>
+    </div>
+
+    <!-- ========== SKILLS ========== -->
+    <section class="skills">
+        <div class="container">
+            <h2>Skills & Tools</h2>
+            <p class="sub">Technologies I work with regularly.</p>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <div class="icon">◈</div>
+                    <h4>HTML / CSS</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">◆</div>
+                    <h4>JavaScript</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">✦</div>
+                    <h4>React</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">⬡</div>
+                    <h4>Node.js</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">▣</div>
+                    <h4>TypeScript</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">◉</div>
+                    <h4>Git / GitHub</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section class="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <p class="sub">Some things I&rsquo;ve built recently.</p>
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Project+1" alt="Project 1" />
+                    <div class="project-info">
+                        <h3>Project One</h3>
+                        <p>A responsive web app built with React and Tailwind.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Tailwind</span>
+                            <span>API</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Project+2" alt="Project 2" />
+                    <div class="project-info">
+                        <h3>Project Two</h3>
+                        <p>A full-stack dashboard with authentication and charts.</p>
+                        <div class="project-tags">
+                            <span>Node</span>
+                            <span>Express</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/e2e8f0/1e293b?text=Project+3" alt="Project 3" />
+                    <div class="project-info">
+                        <h3>Project Three</h3>
+                        <p>A landing page for a local business, built with HTML and CSS.</p>
+                        <div class="project-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Responsive</span>
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <div class="container">
+        <footer class="footer">
+            <span>&copy; 2026 Nalain Haider Hashmi. Built with <span style="color: #2563eb;">✦</span>.</span>
+            <div class="footer-links">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Email</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+//CSS (Cascading Style Sheets) is the language used to style and layout web pages. It controls how HTML elements look — colors, fonts, sizes, spacing, positioning, and more.
+// CSS Syntax (The Basic Rule)
+selector {
+    property: value;
+    property: value;
+}
+<!--  Three Ways to Add CSS -->
+   External CSS (Best Practice)
+   Internal CSS (For Single Pages)
+    Inline CSS (Only for Specific Elements)
+
+
+<!-- CSS Selectors (How to Target Elements)  -->
+ <!-- HTML -->
+<h1>Hello</h1>
+<p class="highlight">This is highlighted.</p>
+<div id="main">Main content</div>
+
+
+/* CSS */
+h1 { color: blue; }           /* Targets <h1> */
+.highlight { background: yellow; } /* Targets class="highlight" */
+#main { width: 80%; }          /* Targets id="main" */
+* { margin: 0; }               /* Targets everything */
+
+
+<!-- Pseudo-Classes (States) -->
+ :hover	           When mouse hovers over element	a:hover { color: red; }
+:focus 	           When element is focused	        input:focus { border: blue; }
+:first-child	   First child of a parent	        li:first-child { }
+:last-child	       Last child of a parent	        li:last-child { }
+:nth-child(n)	   Nth child of a parent	        li:nth-child(2) { }
+:not(selector)	   Everything except	            :not(.class) { }
+
+
+
+
+<!-- Common CSS Properties -->
+ /* Colors */
+color: red;                  /* Named color */
+color: #ff0000;              /* Hex code */
+color: rgb(255, 0, 0);      /* RGB */
+color: rgba(255, 0, 0, 0.5); /* RGB with opacity */
+color: hsl(0, 100%, 50%);   /* HSL */
+
+/* Backgrounds */
+background-color: blue;
+background-image: url('image.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+
+<!-- Text & Fonts -->
+ /* Font properties */
+font-family: Arial, sans-serif;
+font-size: 16px;
+font-weight: bold;  /* or 700 */
+font-style: italic;
+
+/* Text properties */
+text-align: center;  /* left, right, justify */
+text-decoration: underline; /* none, line-through */
+text-transform: uppercase; /* lowercase, capitalize */
+line-height: 1.5;
+letter-spacing: 2px;
+word-spacing: 4px;
+
+
+
+
+<!-- Box Model (Spacing) -->
+ /* Box Model Properties */
+width: 300px;
+height: 200px;
+
+/* Padding (space INSIDE the border) */
+padding: 10px;              /* all sides */
+padding: 10px 20px;         /* top/bottom 10, left/right 20 */
+padding: 10px 20px 30px 40px; /* top, right, bottom, left */
+padding-top: 10px;
+
+/* Margin (space OUTSIDE the border) */
+margin: 10px;
+margin: 10px auto;          /* center horizontally */
+margin-top: 10px;
+
+/* Border */
+border: 2px solid black;
+border-radius: 10px;        /* rounded corners */
+border-top: 1px solid red;
+
+
+<!-- Display & Positioning -->
+
+/* Display */
+display: block;   /* Takes full width */
+display: inline;  /* Takes only needed space */
+display: inline-block; /* Inline but can set width/height */
+display: flex;   /* Flexbox layout */
+display: grid;   /* Grid layout */
+display: none;   /* Hides element */
+
+/* Position */
+position: static;   /* Default */
+position: relative; /* Relative to normal position */
+position: absolute; /* Relative to nearest positioned parent */
+position: fixed;    /* Fixed to viewport */
+position: sticky;   /* Sticks when scrolling */
+
+/* Positioning properties */
+top: 10px;
+left: 20px;
+right: 0;
+bottom: 0;
+z-index: 100;  /* Stack order */
+
+
+<!-- Flexbox (Modern Layout) -->
+ .container {
+    display: flex;
+}
+
+/* Flex properties on parent */
+.container {
+    flex-direction: row;        /* row (default), column, row-reverse */
+    justify-content: center;    /* horizontal alignment */
+    align-items: center;        /* vertical alignment */
+    gap: 10px;                  /* space between items */
+    flex-wrap: wrap;            /* wrap to next line */
+}
+
+/* Flex properties on children */
+.item {
+    flex: 1;                    /* Grow to fill space */
+    flex-grow: 2;               /* Grow ratio */
+    flex-shrink: 0;             /* Don't shrink */
+}

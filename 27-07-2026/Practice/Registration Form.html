@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register</title>
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* ---------- REGISTER CARD ---------- */
+        .register-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 32px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .register-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ---------- HEADER ---------- */
+        .register-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .register-header h1 {
+            font-size: 28px;
+            color: #1e3c72;
+            font-weight: 700;
+        }
+
+        .register-header p {
+            color: #666;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        /* ---------- FORM ---------- */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+            font-family: inherit;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2a5298;
+            box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.15);
+        }
+
+        /* ---------- NAME ROW (2 columns) ---------- */
+        .name-row {
+            display: flex;
+            gap: 14px;
+        }
+
+        .name-row .form-group {
+            flex: 1;
+        }
+
+        /* ---------- TERMS ---------- */
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0 24px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .terms input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: #2a5298;
+            cursor: pointer;
+        }
+
+        .terms label {
+            cursor: pointer;
+        }
+
+        .terms a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- BUTTON ---------- */
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-register:hover {
+            background: linear-gradient(135deg, #16325e, #1e3c72);
+            transform: scale(1.01);
+        }
+
+        .btn-register:active {
+            transform: scale(0.98);
+        }
+
+        /* ---------- LOGIN LINK ---------- */
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 28px 18px;
+            }
+
+            .register-header h1 {
+                font-size: 24px;
+            }
+
+            .name-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .btn-register {
+                font-size: 15px;
+                padding: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-card">
+
+        <!-- HEADER -->
+        <div class="register-header">
+            <h1>Create Account</h1>
+            <p>Join us</p>
+        </div>
+
+        <!-- FORM -->
+        <form>
+
+            <!-- NAME ROW -->
+            <div class="name-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Doe" required />
+                </div>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required />
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Min 8 characters" required minlength="8" />
+            </div>
+
+            <!-- CONFIRM PASSWORD -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Re-enter password" required minlength="8" />
+            </div>
+
+            <!-- COUNTRY (Optional) -->
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country">
+                    <option value="">Select your country</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="pk">Pakistan</option>
+                    <option value="in">India</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- TERMS -->
+            <div class="terms">
+                <input type="checkbox" id="terms" required />
+                <label for="terms">
+                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </label>
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="btn-register">Create Account</button>
+
+        </form>
+
+        <!-- LOGIN LINK -->
+        <div class="login-link">
+            Already have an account? <a href="Login Page.html">Sign in</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

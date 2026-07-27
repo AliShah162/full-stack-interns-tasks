@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER / NAV ---------- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1e3c72;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #2a5298;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2a5298;
+        }
+
+        .btn-outline {
+            border: 2px solid #2a5298;
+            padding: 8px 22px;
+            border-radius: 30px;
+            color: #2a5298 !important;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background: #2a5298;
+            color: white !important;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 60px 0 80px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 50%;
+            min-width: 280px;
+        }
+
+        .hero-content h1 {
+            font-size: 44px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 span {
+            color: #2a5298;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #475569;
+            margin-bottom: 28px;
+            max-width: 450px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(42, 82, 152, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1e293b;
+            padding: 14px 32px;
+            border: 2px solid #cbd5e1;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: #2a5298;
+            color: #2a5298;
+        }
+
+        /* ---------- HERO IMAGE ---------- */
+        .hero-image {
+            flex: 1 1 40%;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            display: block;
+        }
+
+        /* ---------- FEATURES ---------- */
+        .features {
+            padding: 70px 0;
+            background: #f8fafc;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .features .sub {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 44px;
+            font-size: 18px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* ---------- TESTIMONIAL ---------- */
+        .testimonial {
+            padding: 70px 0;
+        }
+
+        .testimonial h2 {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 44px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #f8fafc;
+            padding: 28px 24px;
+            border-radius: 16px;
+            border-left: 5px solid #2a5298;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #334155;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card .author {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .testimonial-card .role {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* ---------- CTA ---------- */
+        .cta {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 60px 30px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 20px 0 60px;
+        }
+
+        .cta h2 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 28px;
+        }
+
+        .cta .btn-primary {
+            background: white;
+            color: #1e3c72;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta .btn-primary:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            padding: 30px 0;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2a5298;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-image img {
+                max-width: 100%;
+            }
+
+            .cta h2 {
+                font-size: 26px;
+            }
+
+            .features h2,
+            .testimonial h2 {
+                font-size: 28px;
+            }
+
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta {
+                padding: 40px 18px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Brand<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="Login Page.html" class="btn-outline">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Build Better <br /><span>With Brand.</span></h1>
+                <p>
+                    A simple, powerful platform to help you grow your business,
+                    connect with customers, and scale your ideas.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Get Started</a>
+                    <a href="#" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="bg.jpg" alt="Hero Image" />
+            </div>
+        </section>
+    </div>
+
+    <!-- ========== FEATURES ========== -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Brand?</h2>
+            <p class="sub">Everything you need to succeed in one place.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Built for speed so your users never wait.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔒</div>
+                    <h3>Secure & Safe</h3>
+                    <p>Your data is protected with enterprise-grade security.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Looks perfect on every device, from desktop to mobile.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h3>Beautiful Design</h3>
+                    <p>Clean, modern, and built to convert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="testimonial">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"This platform completely transformed how we work. Highly recommend!"</p>
+                    <div class="author">— Sarah Ahmed</div>
+                    <div class="role">CEO, TechStart</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The best investment we made. Our productivity doubled within weeks."</p>
+                    <div class="author">— Usman Khan</div>
+                    <div class="role">Product Lead, Innovate</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Simple, intuitive, and powerful. Exactly what our team needed."</p>
+                    <div class="author">— Fatima Noor</div>
+                    <div class="role">Design Director, StudioX</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <div class="container">
+        <section class="cta">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of satisfied users. Start building today.</p>
+            <a href="#" class="btn-primary">Start Free Trial</a>
+        </section>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <div class="container">
+        <footer class="footer">
+            <span>&copy; 2026 Brand. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

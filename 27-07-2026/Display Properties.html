@@ -1,0 +1,47 @@
+The display property determines how an element is placed on the page and how it interacts with other elements
+
+The 3 Main Display Values
+Value	           Behavior	                                   Example Elements
+block	         Takes full width, starts on a new line	        <div>, <h1>, <p>, <section>
+inline	         Takes only needed width, sits in a line	    <span>, <a>, <strong>, <em>
+inline-block	 Like inline but can set width/height/padding	<button>, <input>
+
+
+
+
+The Layout Display Values
+Value	What It Does
+flex	Enables Flexbox layout on parent
+grid	Enables Grid layout on parent
+none	Hides the element completely
+contents	Removes the element's box (children take its place)
+
+
+Quick Examples
+Default Block vs Inline
+
+<!-- Block: Each on new line -->
+<div>Block 1</div>
+<div>Block 2</div>
+
+<!-- Inline: Same line -->
+<span>Inline 1</span>
+<span>Inline 2</span>
+
+<!-- Making Inline Elements Accept Width -->
+span {
+    display: inline-block;
+    width: 100px;  /* Now works! */
+}
+<!-- Hiding an Element -->
+ .hidden {
+    display: none;  /* Completely removed from layout */
+}
+
+.invisible {
+    visibility: hidden;  /* Hidden but still takes up space */
+}
+
+
+<!-- The Golden Rule -->
+block = full width, inline = only needed width, flex/grid = modern layouts.

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    //A form is a way to collect user input. Validation is the process of checking that the input is correct before sending it to a server.
+
+
+<form action="/submit" method="POST">//action attribute specifies where to send the form data when the form is submitted. The method attribute specifies how to send the data (GET or POST).
+
+    <!-- Text Input -->
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <br>
+
+    <!-- Email Input -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    <br>
+
+    <!-- Password Input -->
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" minlength="8" required>
+    <br>
+
+    <!-- Number Input -->
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="18" max="99">
+    <br>
+
+    <!-- Date Input -->
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="birthday">
+    <br>
+
+    <!-- Select Dropdown -->
+    <label for="country">Country:</label>
+    <select id="country" name="country">
+        <option value="">-- Select --</option>
+        <option value="us">United States</option>
+        <option value="uk">United Kingdom</option>
+        <option value="pk">Pakistan</option>
+    </select>
+    <br>
+
+    <!-- Radio Buttons -->
+    <fieldset>
+        <legend>Gender:</legend>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+    </fieldset>
+    <br>
+
+    <!-- Checkbox -->
+    <input type="checkbox" id="terms" name="terms" required>
+    <label for="terms">I agree to the terms and conditions</label>
+    <br>
+
+    <!-- Textarea -->
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="4" cols="50" placeholder="Write your message..."></textarea>
+    <br>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+
+</form>
+
+
+</body>
+</html>
+
+
+
+
+
+<!--  HTML5 Built-in Validation -->
+//Validation Attributes
+required: Ensures the field is not empty before submission.
+minlength: Specifies the minimum number of characters required.
+maxlength: Specifies the maximum number of characters allowed.
+pattern: Defines a regular expression that the input must match.    
+step: Specifies the legal number intervals for numeric inputs.
+accept: Specifies the types of files that can be uploaded (for file inputs).
+type: Specifies the type of input (e.g., email, url, number) which triggers built-in validation for that type.
+
+Example of a form with built-in validation:
+<!-- Email validation -->
+<input type="email" required>
+
+<!-- Number with range -->
+<input type="number" min="18" max="99" step="1">
+
+<!-- Password with minimum length -->
+<input type="password" minlength="8" maxlength="20">
+
+<!-- Phone with pattern -->
+<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+
+<!-- File type validation -->
+<input type="file" accept=".png,.jpg,.jpeg">
+
+<!-- URL validation -->
+<input type="url" required>
+
+
+Custom Validation Messages
+Using setCustomValidity()
+
+<form id="myForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    <span id="usernameError"></span>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    const username =document .getElementById('username')
+    //The **setCustomValidity()** method is a built-in JavaScript function used to assign a custom error message to a form input element.
+    username.addEventListener('input',function(){
+        if(this.value.length <3){
+            this.setCustomValidity('Username must be at least 3 characters')
+        }
+        else if(this.value.includes('')){
+            this.setCustomValidity('Cant use spaces')
+        }
+        else{
+            this.setCustomValidity("")
+        }
+    })
+</script>
+
+The Golden Rule
+Always validate on the client-side (HTML/JS) for user experience, and ALWAYS validate again on the server-side for security.
