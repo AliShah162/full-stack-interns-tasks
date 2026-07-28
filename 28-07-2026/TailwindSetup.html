@@ -1,0 +1,69 @@
+<!-- What is Tailwind CSS? -->
+Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs directly in your HTML.
+
+<!-- Method 1: CDN (Quickest for Testing) -->
+ <!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1 class="text-3xl font-bold text-blue-600">Hello Tailwind!</h1>
+</body>
+</html>
+
+<!-- Method 2: npm Installation (Recommended) -->
+# Install Tailwind CSS
+npm install -D tailwindcss
+
+# Initialize tailwind.config.js
+npx tailwindcss init
+
+<!-- Method 3: Create React App / Vite -->
+ npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+<!-- Vite -->
+ npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+
+<!-- React Setup -->
+// App.jsx
+import './index.css'
+
+function App() {
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-xl shadow-lg">
+        <h1 className="text-3xl font-bold text-blue-600">
+          Hello Tailwind!
+        </h1>
+        <button className="mt-4 btn-primary">
+          Click Me
+        </button>
+      </div>
+    </div>
+  )
+}
+
+<!-- Next.js Setup -->
+
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+}
+
+module.exports = nextConfig
+
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+

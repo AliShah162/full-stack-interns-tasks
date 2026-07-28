@@ -1,0 +1,148 @@
+<!-- What Are States? -->
+States are interactive conditions that change how an element looks when users interact with it.
+<!-- Hover States -->
+Basic Hover
+
+<!-- Color changes -->
+<button class="bg-blue-500 hover:bg-blue-700">Hover me</button>
+
+<!-- Text color -->
+<p class="text-gray-500 hover:text-blue-600">Hover changes text</p>
+
+<!-- Background + Text -->
+<div class="bg-white hover:bg-gray-100 hover:text-blue-600">
+  Hover effects
+</div>
+
+
+<!-- Hover with Transforms -->
+ <!-- Scale up -->
+<button class="hover:scale-105 transition-transform">Grow on hover</button>
+
+<!-- Scale down -->
+<button class="hover:scale-95 transition-transform">Shrink on hover</button>
+
+<!-- Rotate -->
+<div class="hover:rotate-12 transition-transform">Rotate on hover</div>
+
+<!-- Translate -->
+<div class="hover:translate-x-2 transition-transform">Move right</div>
+<div class="hover:-translate-y-1 transition-transform">Move up</div>
+
+<!-- Hover with Shadows -->
+ <!-- Shadow increases -->
+<div class="shadow hover:shadow-xl transition-shadow">Elevates on hover</div>
+
+<!-- Colored shadow -->
+<button class="hover:shadow-lg hover:shadow-blue-500/50">Blue glow</button>
+
+
+<!-- Hover with Filters -->
+ <!-- Brightness -->
+<img class="hover:brightness-110 transition" src="image.jpg">
+
+<!-- Blur -->
+<div class="hover:blur-sm transition">Blurs on hover</div>
+
+<!-- Grayscale to color -->
+<img class="grayscale hover:grayscale-0 transition" src="image.jpg">
+
+
+
+<!-- Hover with Borders -->
+<!-- Border appears -->
+<div class="border-2 border-transparent hover:border-blue-500">
+  Border appears on hover
+</div>
+
+<!-- Border color changes -->
+<div class="border border-gray-300 hover:border-blue-500">
+  Border color changes
+</div>
+
+
+<!-- Focus States -->
+Basic Focus
+<!-- Ring (outline) -->
+<input class="focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+<!-- Ring with offset -->
+<input class="focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+
+<!-- Colored ring -->
+<input class="focus:ring-4 focus:ring-blue-300 focus:border-blue-500">
+
+<!-- Combined States -->
+Multiple States Together
+<button class="
+  bg-blue-500 text-white px-4 py-2 rounded
+  hover:bg-blue-700
+  focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+  active:scale-95
+  transition-all
+">
+  Full interactive button
+</button>
+
+<!-- Hover + Focus + Active -->
+<input class="
+  border-2 border-gray-300 px-3 py-2 rounded
+  hover:border-gray-400
+  focus:border-blue-500 focus:ring-2 focus:ring-blue-200
+  active:border-blue-700
+  transition-colors
+">
+
+
+<!-- Responsive + States -->
+Responsive Hover
+<!-- Only hover on desktop -->
+<button class="hover:bg-blue-700 md:hover:bg-blue-600">
+  Changes on hover
+</button>
+
+<!-- Different effects per breakpoint -->
+<div class="
+  hover:scale-105 
+  md:hover:scale-110 
+  lg:hover:rotate-3
+  transition
+">
+  Responsive hover effects
+</div>
+
+ <!-- Dark Mode + States -->
+Dark Mode Hover
+<button class="
+  bg-white hover:bg-gray-100
+  dark:bg-gray-800 dark:hover:bg-gray-700
+">
+  Works in both modes
+</button>
+
+<!-- Transition Utilities -->
+Add Smooth Transitions
+
+<!-- Individual properties -->
+<div class="transition-colors duration-300 hover:bg-blue-500">
+  Color transition
+</div>
+
+<div class="transition-transform duration-500 hover:scale-110">
+  Transform transition
+</div>
+
+<!-- All properties -->
+<div class="transition-all duration-300 hover:shadow-xl hover:scale-105">
+  Multiple transitions
+</div>
+
+
+
+
+
+
+
+
+
+

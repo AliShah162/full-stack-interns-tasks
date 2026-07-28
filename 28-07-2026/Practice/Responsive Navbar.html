@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md px-4 py-3 md:px-6 md:py-4">
+        <div class="container mx-auto flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                <span class="text-3xl">Nalain</span>
+            </a>
+
+            <!-- Desktop Menu (hidden on mobile) -->
+            <ul class="hidden md:flex items-center gap-8 text-gray-700 font-medium">
+                <li><a href="#" class="hover:text-blue-600 transition">Home</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition">About</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition">Services</a></li>
+                <li><a href="#" class="hover:text-blue-600 transition">Contact</a></li>
+            </ul>
+
+            <!-- Desktop Auth Buttons (hidden on mobile) -->
+            <div class="hidden md:flex items-center gap-3">
+                <button class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition">
+                    Login
+                </button>
+                <button class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+                    Sign Up
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuToggle" class="md:hidden text-gray-600 hover:text-gray-800 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M4 6h16M4 12h16M4 18h16" id="menuIcon" />
+                </svg>
+            </button>
+
+        </div>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobileMenu" class="md:hidden hidden mt-4 pt-4 border-t border-gray-200">
+            <ul class="flex flex-col gap-3 text-gray-700 font-medium">
+                <li><a href="#" class="block px-3 py-2 rounded hover:bg-blue-50 hover:text-blue-600 transition">Home</a></li>
+                <li><a href="#" class="block px-3 py-2 rounded hover:bg-blue-50 hover:text-blue-600 transition">About</a></li>
+                <li><a href="#" class="block px-3 py-2 rounded hover:bg-blue-50 hover:text-blue-600 transition">Services</a></li>
+                <li><a href="#" class="block px-3 py-2 rounded hover:bg-blue-50 hover:text-blue-600 transition">Contact</a></li>
+            </ul>
+            <div class="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-200">
+                <button class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition">
+                    Login
+                </button>
+                <button class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <section class="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 px-4">
+        <div class="text-center max-w-2xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Responsive Navbar
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600">
+                Resize your browser to see the mobile menu toggle
+            </p>
+        </div>
+    </section>
+
+    <!-- JavaScript: Toggle Mobile Menu -->
+    <script>
+        const toggleBtn = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        toggleBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+
+            // Toggle icon between hamburger and X
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        });
+    </script>
+
+</body>
+</html>

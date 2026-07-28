@@ -1,0 +1,219 @@
+<!-- What is DOM? -->
+DOM (Document Object Model) is a tree-like representation of your HTML that JavaScript can interact with
+<!-- HTML -->
+<div id="app">
+  <h1 class="title">Hello</h1>
+</div>
+
+<!-- Selecting Elements -->
+// By ID (returns single element)
+const element = document.getElementById('app')
+
+// By Class (returns collection)
+const elements = document.getElementsByClassName('title')
+
+// By Tag (returns collection)
+const divs = document.getElementsByTagName('div')
+
+// By CSS Selector (returns first match)
+const first = document.querySelector('.title')
+
+// By CSS Selector (returns all matches)
+const all = document.querySelectorAll('.title')
+
+
+<!-- Manipulating Content -->
+ // Change text content
+element.textContent = 'New Text'
+
+// Change HTML content
+element.innerHTML = '<strong>Bold</strong> text'
+
+// Change attributes
+element.setAttribute('class', 'new-class')
+element.id = 'new-id'
+element.src = 'image.jpg'
+
+// Get/Set values (for inputs)
+input.value = 'New value'
+const value = input.value
+
+
+
+<!-- Manipulating Styles -->
+// Direct style
+element.style.color = 'blue'
+element.style.backgroundColor = 'red'
+element.style.fontSize = '20px'
+
+// Toggle classes
+element.classList.add('active')
+element.classList.remove('hidden')
+element.classList.toggle('dark-mode')
+element.classList.contains('active') // true/false
+
+// Multiple styles at once
+Object.assign(element.style, {
+  color: 'white',
+  background: 'blue',
+  padding: '10px'
+})
+
+<!-- Creating & Removing Elements -->
+ // Create new element
+const div = document.createElement('div')
+div.textContent = 'New Element'
+div.className = 'box'
+
+// Add to DOM
+document.body.appendChild(div)
+parentElement.append(div) // Also works
+parentElement.prepend(div) // Add at beginning
+
+// Insert before another element
+parent.insertBefore(newElement, referenceElement)
+
+// Remove element
+element.remove()
+parent.removeChild(child)
+
+// Replace element
+parent.replaceChild(newElement, oldElement)
+
+// Clone element
+const clone = element.cloneNode(true) // true = deep clone
+
+
+
+
+<!-- Traversing the DOM -->
+const element = document.querySelector('.child')
+
+// Parent
+const parent = element.parentElement
+const parentNode = element.parentNode
+
+// Children
+const children = element.children // HTML elements only
+const childNodes = element.childNodes // Includes text nodes
+
+// Siblings
+const next = element.nextElementSibling
+const prev = element.previousElementSibling
+
+// First/Last child
+const first = element.firstElementChild
+const last = element.lastElementChild
+
+// Find ancestors
+const closest = element.closest('.container') 
+
+
+
+<!-- Traversing the DOM -->
+ const element = document.querySelector('.child')
+
+// Parent
+const parent = element.parentElement
+const parentNode = element.parentNode
+
+// Children
+const children = element.children // HTML elements only
+const childNodes = element.childNodes // Includes text nodes
+
+// Siblings
+const next = element.nextElementSibling
+const prev = element.previousElementSibling
+
+// First/Last child
+const first = element.firstElementChild
+const last = element.lastElementChild
+
+// Find ancestors
+const closest = element.closest('.container')
+
+
+<!-- InnerHTML vs TextContent vs InnerText -->
+ // innerHTML - Parses HTML
+element.innerHTML = '<span>Hello</span>' // Renders as HTML
+
+// textContent - Raw text (faster)
+element.textContent = '<span>Hello</span>' // Shows literal text
+
+// innerText - Text with styling awareness (slower)
+element.innerText = 'Hello' // Respects CSS display:none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

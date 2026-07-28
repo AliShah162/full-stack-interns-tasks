@@ -1,0 +1,83 @@
+ <!-- DOM Events -->
+Common Events
+// Mouse Events
+click, dblclick, mousedown, mouseup, mouseover, mouseout, mousemove
+
+// Keyboard Events
+keydown, keyup, keypress
+
+// Form Events
+submit, change, input, focus, blur, reset
+
+// Window Events
+load, resize, scroll, unload
+
+// Touch Events
+touchstart, touchmove, touchend
+
+// Clipboard Events
+copy, cut, paste
+
+
+<!-- Event Properties -->
+ element.addEventListener('click', function(event) {
+  // Event object properties
+  event.target // Element that triggered event
+  event.currentTarget // Element with listener
+  event.type // 'click'
+  event.timeStamp // Time when event occurred
+  
+  // Mouse events
+  event.clientX // X position relative to viewport
+  event.clientY // Y position relative to viewport
+  event.pageX // X position relative to page
+  event.pageY // Y position relative to page
+  
+  // Keyboard events
+  event.key // 'Enter', 'a', 'ArrowUp'
+  event.keyCode // 13, 65, 38
+  event.shiftKey // true/false
+  event.ctrlKey // true/false
+  event.altKey // true/false
+  
+  // Prevent default behavior
+  event.preventDefault()
+  
+  // Stop propagation
+  event.stopPropagation()
+})
+
+<!-- Event Flow (Bubbling & Capturing) -->
+ <div id="parent">
+  <button id="child">Click me</button>
+</div>
+
+// BUBBLING (default) - child to parent
+document.getElementById('child').addEventListener('click', () => {
+  console.log('Child clicked') // Runs first
+})
+
+document.getElementById('parent').addEventListener('click', () => {
+  console.log('Parent clicked') // Runs second
+})
+
+// CAPTURING - parent to child (useCapture: true)
+document.getElementById('parent').addEventListener('click', () => {
+  console.log('Parent clicked') // Runs first
+}, true)
+
+document.getElementById('child').addEventListener('click', () => {
+  console.log('Child clicked') // Runs second
+}, true)
+
+// Stop bubbling
+child.addEventListener('click', (e) => {
+  e.stopPropagation() // Prevents parent from receiving
+})
+
+
+
+
+
+
+

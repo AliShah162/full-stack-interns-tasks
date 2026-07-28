@@ -1,0 +1,129 @@
+<!-- Basic Validation -->
+ Basic Validation
+ // HTML
+<form id="registerForm">
+  <input type="text" id="username" required minlength="3">
+  <input type="email" id="email" required>
+  <input type="password" id="password" minlength="6">
+  <button type="submit">Submit</button>
+  <div id="errors"></div>
+</form>
+
+// JavaScript
+const form = document.getElementById('registerForm')
+const errors = document.getElementById('errors')
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  
+  const username = document.getElementById('username')
+  const email = document.getElementById('email')
+  const password = document.getElementById('password')
+  
+  let errorMessages = []
+  
+  // Validate username
+  if (username.value.length < 3) {
+    errorMessages.push('Username must be at least 3 characters')
+    username.classList.add('error')
+  } else {
+    username.classList.remove('error')
+  }
+  
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email.value)) {
+    errorMessages.push('Please enter a valid email')
+    email.classList.add('error')
+  } else {
+    email.classList.remove('error')
+  }
+  
+  // Validate password
+  if (password.value.length < 6) {
+    errorMessages.push('Password must be at least 6 characters')
+    password.classList.add('error')
+  } else {
+    password.classList.remove('error')
+  }
+  
+  // Show errors or submit
+  if (errorMessages.length > 0) {
+    errors.innerHTML = errorMessages.map(msg => 
+      `<p class="text-red-500">${msg}</p>`
+    ).join('')
+  } else {
+    errors.innerHTML = '<p class="text-green-500">Form submitted!</p>'
+    // Submit form
+    // form.submit()
+  }
+})
+
+
+<!-- Real-time Validation -->
+ // Validate as user types
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    validateField(input)
+  })
+  
+  input.addEventListener('blur', () => {
+    validateField(input)
+  })
+})
+
+function validateField(input) {
+  const error = input.parentElement.querySelector('.error-message')
+  
+  if (input.validity.valid) {
+    input.classList.remove('border-red-500')
+    input.classList.add('border-green-500')
+    if (error) error.remove()
+  } else {
+    input.classList.add('border-red-500')
+    input.classList.remove('border-green-500')
+    
+    // Show error message
+    const msg = error || document.createElement('p')
+    msg.className = 'text-red-500 text-sm error-message'
+    msg.textContent = getErrorMessage(input)
+    if (!error) input.parentElement.appendChild(msg)
+  }
+}
+
+function getErrorMessage(input) {
+  if (input.validity.valueMissing) return 'This field is required'
+  if (input.validity.typeMismatch) return 'Invalid format'
+  if (input.validity.tooShort) return `Minimum ${input.minLength} characters`
+  if (input.validity.rangeUnderflow) return `Minimum value is ${input.min}`
+  return 'Invalid input'
+}
+
+<!-- Common Validation Patterns -->
+// 1. Email validation
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+// 2. Password strength
+function checkPassword(password) {
+  const checks = {
+    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    number: /\d/.test(password),
+    special: /[!@#$%^&*]/.test(password)
+  }
+  const strength = Object.values(checks).filter(Boolean).length
+  return { checks, strength }
+}
+
+// 3. Phone number
+function isValidPhone(phone) {
+  return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(phone)
+}
+
+// 4. Confirm password
+function passwordsMatch(pwd, confirm) {
+  return pwd === confirm
+}

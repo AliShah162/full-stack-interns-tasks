@@ -1,0 +1,151 @@
+<!-- What is Event Delegation? -->
+Event delegation is a technique where you attach a single event listener to a parent element instead of multiple listeners to child elements. It leverages event bubbling.
+
+<!-- Instead of adding click listeners to each item -->
+<ul id="list">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+document.getElementById('list').addEventListener('click',(e)=>{
+    if(e.target.tagName==='li'){
+        console.log('Clicked item:', e.target.textContent)
+    }
+})
+
+
+<!-- Practical Examples -->
+ // 1. Dynamic list with add/remove
+const list = document.getElementById('list')
+
+// Add new items dynamically
+document.getElementById('addBtn').addEventListener('click', () => {
+  const li = document.createElement('li')
+  li.textContent = 'New Item'
+  li.className = 'item'
+  list.appendChild(li)
+})
+
+// Single listener handles all items (existing & new)
+list.addEventListener('click', (e) => {
+  const item = e.target.closest('.item')
+  if (!item) return
+  
+  console.log('Clicked:', item.textContent)
+  
+  // Delete item
+  if (e.target.classList.contains('delete')) {
+    item.remove()
+  }
+})
+
+// 2. Form with multiple inputs
+form.addEventListener('input', (e) => {
+  if (e.target.matches('input, textarea')) {
+    validateField(e.target)
+  }
+})
+
+// 3. Dropdown menu
+menu.addEventListener('click', (e) => {
+  const item = e.target.closest('.menu-item')
+  if (item) {
+    console.log('Selected:', item.dataset.value)
+  }
+})
+
+
+<!-- Target vs CurrentTarget -->
+ parent.addEventListener('click', (e) => {
+  // e.target - Element that was clicked (child)
+  // e.currentTarget - Element with listener (parent)
+  
+  console.log('Clicked element:', e.target)
+  console.log('Listener element:', e.currentTarget)
+  
+  // Check if clicked element matches selector
+  if (e.target.matches('.item')) {
+    // Handle item click
+  }
+})
+
+<!-- Form Validation -->
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

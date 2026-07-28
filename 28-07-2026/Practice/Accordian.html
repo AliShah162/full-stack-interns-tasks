@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Accordion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+        <div class="w-full max-w-md bg-white rounded-lg shadow p-4">
+
+            <!-- ===== ACCORDION ITEM 1 ===== -->
+            <div class="border-b border-gray-200">
+                <!-- Header -->
+                <button onclick="toggleAccordion('content1')" 
+                        class="w-full flex items-center justify-between py-3 text-left font-medium hover:text-blue-600">
+                    <span>Section 1</span>
+                    <span id="icon1">▼</span>
+                </button>
+                <!-- Content -->
+                <div id="content1" class="pb-3 hidden">
+                    <p class="text-gray-600">This is the content for section 1.</p>
+                </div>
+            </div>
+
+            <!-- ===== ACCORDION ITEM 2 ===== -->
+            <div class="border-b border-gray-200">
+                <button onclick="toggleAccordion('content2')" 
+                        class="w-full flex items-center justify-between py-3 text-left font-medium hover:text-blue-600">
+                    <span>Section 2</span>
+                    <span id="icon2">▼</span>
+                </button>
+                <div id="content2" class="pb-3 hidden">
+                    <p class="text-gray-600">This is the content for section 2.</p>
+                </div>
+            </div>
+
+            <!-- ===== ACCORDION ITEM 3 ===== -->
+            <div>
+                <button onclick="toggleAccordion('content3')" 
+                        class="w-full flex items-center justify-between py-3 text-left font-medium hover:text-blue-600">
+                    <span>Section 3</span>
+                    <span id="icon3">▼</span>
+                </button>
+                <div id="content3" class="pb-3 hidden">
+                    <p class="text-gray-600">This is the content for section 3.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon' + id.charAt(id.length-1));
+            
+            // Toggle content
+            content.classList.toggle('hidden');
+            
+            // Toggle icon
+            if (content.classList.contains('hidden')) {
+                icon.textContent = '▼';
+            } else {
+                icon.textContent = '▲';
+            }
+        }
+    </script>
+
+</body>
+</html>

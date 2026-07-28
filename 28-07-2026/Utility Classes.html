@@ -1,0 +1,245 @@
+<!-- What are Utility Classes? -->
+Utility classes are single-purpose CSS classes that do one thing and do it well. Instead of writing custom CSS, you compose styles directly in your HTML using these classes.
+
+<!-- Traditional CSS -->
+<div class="card">Content</div>
+<style>
+.card {
+  padding: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+</style>
+
+<!-- Tailwind Utility Classes -->
+<div class="p-4 bg-white rounded-lg shadow-md">Content</div>
+
+
+<!-- Color Utilities -->
+ <!-- Basic colors -->
+<p class="text-red-500">Red text</p>
+<p class="text-blue-600">Blue text</p>
+<p class="text-green-400">Green text</p>
+
+<!-- Shades (50-950) -->
+<p class="text-gray-100">Light gray</p>
+<p class="text-gray-500">Medium gray</p>
+<p class="text-gray-900">Dark gray</p>
+
+<!-- With opacity -->
+<p class="text-black/50">50% opacity black</p>
+<p class="text-blue-500/75">75% opacity blue</p>
+
+
+<!-- Background Colors -->
+ <div class="bg-red-500">Red background</div>
+<div class="bg-blue-200">Light blue background</div>
+<div class="bg-gradient-to-r from-blue-500 to-purple-500">
+  Gradient background
+</div>
+<div class="bg-white/50">Semi-transparent white</div>
+
+<!-- Border Colors -->
+ <div class="border border-red-500">Red border</div>
+<div class="border-2 border-blue-600">2px blue border</div>
+<div class="border-l-4 border-green-500">Left border only</div>
+
+
+<!-- Spacing Utilities -->
+ <!-- All sides -->
+<div class="p-4">Padding: 1rem all sides</div>
+<div class="p-8">Padding: 2rem all sides</div>
+
+<!-- Individual sides -->
+<div class="pt-4">Padding top</div>    <!-- pt = padding-top -->
+<div class="pr-4">Padding right</div>   <!-- pr = padding-right -->
+<div class="pb-4">Padding bottom</div>  <!-- pb = padding-bottom -->
+<div class="pl-4">Padding left</div>    <!-- pl = padding-left -->
+
+<!-- Horizontal & Vertical -->
+<div class="px-4">Padding left & right</div>  <!-- px = padding-x -->
+<div class="py-4">Padding top & bottom</div>  <!-- py = padding-y -->
+
+
+
+<!-- Margin (m-{size}) -->
+ <!-- All sides -->
+<div class="m-4">Margin: 1rem all sides</div>
+
+<!-- Individual sides -->
+<div class="mt-4">Margin top</div>
+<div class="mr-4">Margin right</div>
+<div class="mb-4">Margin bottom</div>
+<div class="ml-4">Margin left</div>
+
+<!-- Auto margins -->
+<div class="mx-auto">Center horizontally</div>
+<div class="my-auto">Center vertically</div>
+
+
+
+<!-- Sizing Utilities -->
+ <!-- Fixed widths -->
+<div class="w-32">Width: 8rem (128px)</div>
+<div class="w-64">Width: 16rem (256px)</div>
+
+<!-- Percentage -->
+<div class="w-1/2">50% width</div>
+<div class="w-1/3">33.33% width</div>
+<div class="w-1/4">25% width</div>
+<div class="w-full">100% width</div>
+
+<!-- Viewport -->
+<div class="w-screen">Full viewport width</div>
+<div class="w-min">Minimum width</div>
+<div class="w-max">Maximum width</div>
+
+<!-- Max width -->
+<div class="max-w-sm">Max width: 24rem</div>
+<div class="max-w-md">Max width: 28rem</div>
+<div class="max-w-lg">Max width: 32rem</div>
+<div class="max-w-xl">Max width: 36rem</div>
+<div class="max-w-2xl">Max width: 42rem</div>
+
+<!-- Height -->
+ <div class="h-32">Height: 8rem (128px)</div>
+<div class="h-64">Height: 16rem (256px)</div>
+<div class="h-full">100% of parent</div>
+<div class="h-screen">Full viewport height</div>
+<div class="min-h-screen">Minimum full viewport</div>
+
+
+<!-- Flexbox Utilities -->
+
+<div class="flex">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+
+
+<!-- Direction -->
+ <!-- Row (default) -->
+<div class="flex flex-row">Horizontal items</div>
+
+<!-- Column -->
+<div class="flex flex-col">Vertical items</div>
+
+<!-- Reverse -->
+<div class="flex flex-row-reverse">Right to left</div>
+<div class="flex flex-col-reverse">Bottom to top</div>
+
+<!-- Justify Content (Main Axis) -->
+ <div class="flex justify-start">Left aligned</div>
+<div class="flex justify-end">Right aligned</div>
+<div class="flex justify-center">Centered</div>
+<div class="flex justify-between">Space between</div>
+<div class="flex justify-around">Space around</div>
+<div class="flex justify-evenly">Space evenly</div>
+
+
+
+
+<!-- Align Items (Cross Axis) -->
+ <div class="flex items-start">Top aligned</div>
+<div class="flex items-end">Bottom aligned</div>
+<div class="flex items-center">Centered vertically</div>
+<div class="flex items-baseline">Baseline aligned</div>
+<div class="flex items-stretch">Stretched</div>
+
+
+<!-- Flex Properties -->
+<!-- Grow -->
+<div class="flex-1">Grow equally</div>
+<div class="flex-grow">Grow to fill space</div>
+
+<!-- Shrink -->
+<div class="flex-shrink-0">Don't shrink</div>
+<div class="flex-shrink">Allow shrink</div>
+
+<!-- Wrap -->
+<div class="flex flex-wrap">Wrap to next line</div>
+<div class="flex flex-wrap-reverse">Wrap reversed</div>
+<div class="flex flex-nowrap">No wrap</div>
+
+
+
+<!-- Basic Grid -->
+ <div class="grid grid-cols-3 gap-4">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+
+<!-- Column Layouts -->
+<!-- Fixed columns -->
+<div class="grid grid-cols-1">1 column</div>
+<div class="grid grid-cols-2">2 columns</div>
+<div class="grid grid-cols-3">3 columns</div>
+<div class="grid grid-cols-4">4 columns</div>
+
+<!-- Responsive columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  <!-- 1 col mobile, 2 cols tablet, 3 cols desktop -->
+</div>
+
+<!-- Auto columns -->
+<div class="grid grid-cols-auto">Auto size</div>
+<div class="grid grid-cols-[200px_1fr]">Custom sizes</div>
+
+
+
+<!-- Gap Utilities -->
+<!-- Gap between items -->
+<div class="grid gap-4">16px gap</div>
+<div class="grid gap-x-4">16px horizontal gap</div>
+<div class="grid gap-y-4">16px vertical gap</div>
+
+<!-- Different sizes -->
+<div class="grid gap-2">8px gap</div>
+<div class="grid gap-6">24px gap</div>
+<div class="grid gap-8">32px gap</div>
+
+<!-- Typography Utilities -->
+ <p class="text-xs">Extra Small (0.75rem)</p>
+<p class="text-sm">Small (0.875rem)</p>
+<p class="text-base">Base (1rem)</p>
+<p class="text-lg">Large (1.125rem)</p>
+<p class="text-xl">Extra Large (1.25rem)</p>
+<p class="text-2xl">2XL (1.5rem)</p>
+<p class="text-3xl">3XL (1.875rem)</p>
+<p class="text-4xl">4XL (2.25rem)</p>
+<p class="text-5xl">5XL (3rem)</p>
+<p class="text-6xl">6XL (3.75rem)</p>
+
+<!-- Font Weight -->
+ <p class="font-thin">Thin (100)</p>
+<p class="font-light">Light (300)</p>
+<p class="font-normal">Normal (400)</p>
+<p class="font-medium">Medium (500)</p>
+<p class="font-semibold">Semibold (600)</p>
+<p class="font-bold">Bold (700)</p>
+<p class="font-extrabold">Extra Bold (800)</p>
+<p class="font-black">Black (900)</p>
+
+
+
+<!-- Text Alignment -->
+ <p class="text-left">Left aligned</p>
+<p class="text-center">Centered</p>
+<p class="text-right">Right aligned</p>
+<p class="text-justify">Justified text</p>
+
+
+
+
+
+
+
+
+
+

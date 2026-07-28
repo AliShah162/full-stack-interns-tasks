@@ -1,0 +1,75 @@
+<!-- Adding Event Listeners -->
+ // Modern way (recommended)
+element.addEventListener('click', function() {
+  console.log('Clicked!')
+})
+
+// With arrow function
+element.addEventListener('click', () => {
+  console.log('Clicked!')
+})
+
+// Named function (reusable)
+function handleClick() {
+  console.log('Clicked!')
+}
+element.addEventListener('click', handleClick)
+
+// Multiple events on one element
+element.addEventListener('mouseenter', () => {})
+element.addEventListener('mouseleave', () => {})
+element.addEventListener('click', () => {})
+
+
+<!-- Removing Event Listeners -->
+ // Must reference the same function
+function handleClick() {
+  console.log('Clicked!')
+}
+
+element.addEventListener('click', handleClick)
+element.removeEventListener('click', handleClick)
+
+// Anonymous functions CANNOT be removed
+element.addEventListener('click', () => {
+  console.log('Cannot remove me!')
+})
+// ❌ This doesn't work!
+element.removeEventListener('click', () => {})
+
+
+<!-- One-Time Event -->
+ // Using { once: true }
+element.addEventListener('click', () => {
+  console.log('Only fires once!')
+}, { once: true })
+
+// Manual removal
+function onceHandler() {
+  console.log('Once!')
+  element.removeEventListener('click', onceHandler)
+}
+element.addEventListener('click', onceHandler)
+
+
+
+<!-- Event Delegation -->
+ // Instead of adding listeners to each item
+const items = document.querySelectorAll('.item')
+items.forEach(item => {
+  item.addEventListener('click', handleItem) //   Inefficient...............
+})
+
+// Add one listener to parent (Event Delegation)
+document.querySelector('.list').addEventListener('click', (e) => {
+  if (e.target.classList.contains('item')) {
+    console.log('Item clicked:', e.target.textContent)
+  }
+})
+
+
+
+
+
+
+
