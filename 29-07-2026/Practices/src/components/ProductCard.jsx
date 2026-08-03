@@ -4,20 +4,13 @@ function ProductCard({ name, price, image, description, rating }) {
       border: '1px solid #e0e0e0',
       borderRadius: '12px',
       padding: '16px',
-      width: '280px',              
+      maxWidth: '280px',
+      margin: '20px auto',
       boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
       fontFamily: 'Arial, sans-serif',
-      background: '#ffffff',
-      transition: 'transform 0.2s, box-shadow 0.2s'
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-4px)';
-      e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+      background: '#ffffff'
     }}>
+      {/* Product Image */}
       <img 
         src={image || "https://placehold.co/280x200/eee/999?text=Product"} 
         alt={name}
@@ -30,6 +23,7 @@ function ProductCard({ name, price, image, description, rating }) {
         }}
       />
 
+      {/* Product Name */}
       <h3 style={{
         margin: '0 0 6px',
         fontSize: '16px',
@@ -39,6 +33,7 @@ function ProductCard({ name, price, image, description, rating }) {
         {name}
       </h3>
 
+      {/* Rating */}
       <div style={{
         margin: '0 0 6px',
         fontSize: '13px',
@@ -51,6 +46,7 @@ function ProductCard({ name, price, image, description, rating }) {
         </span>
       </div>
 
+      {/* Description */}
       <p style={{
         margin: '0 0 12px',
         fontSize: '13px',
@@ -60,6 +56,7 @@ function ProductCard({ name, price, image, description, rating }) {
         {description || 'No description available'}
       </p>
 
+      {/* Price and Button */}
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
