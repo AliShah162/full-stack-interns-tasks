@@ -6,13 +6,13 @@ import { setSelectedEmployee } from '@/app/store/slices/employeeSlice';
 import { FiMail, FiPhone, FiMapPin, FiBriefcase, FiCalendar } from 'react-icons/fi';
 import Link from 'next/link';
 
-export default function EmployeeDetailsPage() {
+export default function EmployeeDetailsPage() { 
   const params = useParams();
   const router = useRouter();//useParams hook lets components read dynamic parameters from the current URL path. It returns an object of key-value pairs matching dynamic route segments (like /users/:id), making it easy to fetch and display specific data.
   const dispatch = useDispatch();
   const { employees, selectedEmployee } = useSelector((state) => state.employee);
 
-  useEffect(() => {
+  useEffect(() => {                           
     const employee = employees.find(e => e.id === Number(params.id));
     if (employee) {
       dispatch(setSelectedEmployee(employee));
@@ -30,7 +30,7 @@ export default function EmployeeDetailsPage() {
   }
 
   const { firstName, lastName, email, phone, department, designation, company, age, gender, address, image, status } = selectedEmployee;
-
+  
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -97,8 +97,8 @@ export default function EmployeeDetailsPage() {
             </div>
             
             <div className="flex items-start gap-3">
-              <FiBriefcase className="mt-1 text-gray-400" />
-              <div>
+              <FiBriefcase className="mt-1 text-gray-400"/>
+              <div>                  
                 <dt className="text-sm font-medium text-gray-500">Department & Company</dt>
                 <dd className="text-sm text-gray-900">{department} @ {company}</dd>
               </div>

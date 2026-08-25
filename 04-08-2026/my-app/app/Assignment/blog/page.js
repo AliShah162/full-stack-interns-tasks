@@ -1,6 +1,12 @@
 import Link from "next/link";
 
 //  Server-side data fetching
+
+
+export const metadata={
+    title:"Ali", //this will be shown on title at the top.
+    description:"This is ali's website"
+}
 export default async function Blog() {
   // Fetch all posts from JSONPlaceholder
   const res = await fetch('https://jsonplaceholder.typicode.com/posts');

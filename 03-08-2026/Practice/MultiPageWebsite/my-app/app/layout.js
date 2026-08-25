@@ -20,11 +20,11 @@ export default function RootLayout({ children }) {
           justifyContent: 'center'
         }}>
           <Link href="/" style={{ color: 'white' }}>Home</Link>
-          <Link href="/about" style={{ color: 'white' }}>About</Link>
-          <Link href="/services" style={{ color: 'white' }}>Services</Link>
-          <Link href="/blog" style={{ color: 'white' }}>Blog</Link>
-          <Link href="/contact" style={{ color: 'white' }}>Contact</Link>
-          <Link href="/products" style={{ color: 'white' }}>Products</Link>
+          <Link href="/CompanyWebsite/about" style={{ color: 'white' }}>About</Link>
+          <Link href="/CompanyWebsite/services" style={{ color: 'white' }}>Services</Link>
+          <Link href="/CompanyWebsite/blog" style={{ color: 'white' }}>Blog</Link>
+          <Link href="/CompanyWebsite/contact" style={{ color: 'white' }}>Contact</Link>
+          <Link href="/CompanyWebsite/products" style={{ color: 'white' }}>Products</Link>
         </nav>
 
         <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
