@@ -1,0 +1,290 @@
+### The Big Picture: What is Data Integrity?
+
+**Data Integrity** means: *"The data in my database is accurate, consistent, and trustworthy."*
+
+**The Opposite (Bad Data):**
+- Two users with the same email address.
+- An "Order" that references a "Customer" that doesn't exist anymore.
+- A "Price" column that accidentally stores text like "Apple" instead of a number like 19.99.
+- A user's age saved as 999.
+
+**Analogy:** Think of your database as a **vending machine**. 
+- **Data Integrity** means every item is in the correct slot, the prices are correct, and the machine only gives you a Snickers if you actually paid for it.
+- **Lack of Integrity** means the machine sometimes gives you two items for free, sometimes steals your money, and sometimes has an empty slot but still takes your money.
+
+---
+
+### The 4 Types of Data Integrity (The Pillars)
+
+Database experts break integrity into 4 categories. Here’s what they mean in plain English:
+
+| Type | What it protects | Simple Rule |
+| :--- | :--- | :--- |
+| **1. Entity Integrity** | **No duplicates.** Every row must be unique. | *"No two students can have the same Student ID."* |
+| **2. Referential Integrity** | **No "orphans."** Every foreign key must point to a real record. | *"You can't have an Order for a Customer that doesn't exist."* |
+| **3. Domain Integrity** | **Valid values.** Columns must only accept the right type of data. | *"You can't put a text string in a Price column."* |
+| **4. User-Defined Integrity** | **Business rules.** Rules specific to your company. | *"You can't buy alcohol if you are under 21."* |
+
+---
+
+### How We Enforce Integrity (The Weapons)
+
+We enforce these rules using **Constraints**. Constraints are like safety rails that prevent bad data from ever being inserted.
+
+Let's look at the most common constraints in both SQL and MongoDB.
+
+---
+
+## 1. Entity Integrity (Preventing Duplicates)
+
+### The Tool: `PRIMARY KEY` (SQL) and `_id` (MongoDB)
+
+This is the most basic rule: **Every single row/document must have a unique identifier.**
+
+**In SQL:**
+```sql
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,  -- This forces uniqueness
+    name VARCHAR(100)
+);
+
+-- This fails because user_id 1 already exists
+INSERT INTO Users (user_id, name) VALUES (1, 'Alice'); -- Works
+INSERT INTO Users (user_id, name) VALUES (1, 'Bob');   -- ERROR! Duplicate!
+```
+
+**In MongoDB:**
+MongoDB automatically enforces this with the `_id` field.
+```javascript
+// This fails because _id must be unique
+db.users.insertOne({ _id: 1, name: "Alice" }); // Works
+db.users.insertOne({ _id: 1, name: "Bob" });   // ERROR! Duplicate!
+```
+
+---
+
+### The Tool: `UNIQUE` Constraint
+
+Sometimes you want other fields to be unique too (like `email` or `username`).
+
+**In SQL:**
+```sql
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE  -- No two users can share an email
+);
+
+-- This fails because email "alice@email.com" is already taken
+INSERT INTO Users (user_id, email) VALUES (1, 'alice@email.com'); -- Works
+INSERT INTO Users (user_id, email) VALUES (2, 'alice@email.com'); -- ERROR! Duplicate email!
+```
+
+**In MongoDB:**
+```javascript
+// Create a unique index
+db.users.createIndex({ "email": 1 }, { unique: true });
+
+// Now this works...
+db.users.insertOne({ email: "alice@email.com" });
+// But this fails!
+db.users.insertOne({ email: "alice@email.com" }); // ERROR! Duplicate!
+```
+
+---
+
+## 2. Referential Integrity (Preventing Orphans)
+
+### The Tool: `FOREIGN KEY` (SQL)
+
+This is the **superpower of SQL**. It ensures that every reference points to a real, existing record.
+
+**The Problem (Bad Data):**
+```sql
+-- Orders table references a customer_id
+INSERT INTO Orders (order_id, customer_id, total) 
+VALUES (101, 999, 50.00); 
+-- But there is NO customer with ID 999! You just created an ORPHAN order!
+```
+
+**The Fix (Foreign Key):**
+```sql
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    total DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+    -- This forces every customer_id in Orders to EXIST in Customers
+);
+
+-- This will FAIL because customer 999 doesn't exist!
+INSERT INTO Orders (order_id, customer_id, total) 
+VALUES (101, 999, 50.00); -- ERROR! Foreign key violation!
+```
+
+### What About MongoDB?
+
+**MongoDB does NOT have foreign keys by default.** 
+
+This is a huge difference. In MongoDB, you can insert an Order with a `customer_id` that doesn't exist. MongoDB trusts your application code to do the right thing.
+
+**How to enforce it in MongoDB:**
+You enforce Referential Integrity at the **application level** (in your Node.js/Python code).
+
+```javascript
+// Before inserting an order, CHECK if the customer exists
+const customer = db.customers.findOne({ _id: customerId });
+if (!customer) {
+    throw new Error("Customer does not exist!");
+}
+// If they exist, insert the order
+db.orders.insertOne({ customerId: customerId, total: 50 });
+```
+
+**Note:** MongoDB 4.0+ added **Transactions**, but they are slower and more complex. Most MongoDB developers rely on their app code to enforce this rule.
+
+---
+
+## 3. Domain Integrity (Preventing Wrong Types)
+
+### The Tool: `DATA TYPES` and `CHECK` Constraints
+
+This ensures that the data in a column matches the expected format (numbers, dates, text).
+
+**In SQL:**
+```sql
+CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    name VARCHAR(100),        -- Must be text
+    price DECIMAL(10,2),      -- Must be a number with 2 decimal places
+    created_at DATE,          -- Must be a valid date
+    stock INT CHECK (stock >= 0) -- Stock can't be negative!
+);
+
+-- This FAILS because you can't put text in a DECIMAL column
+INSERT INTO Products (product_id, name, price) 
+VALUES (1, 'Laptop', 'Ninety Dollars'); -- ERROR! Invalid data type!
+
+-- This FAILS because stock would be -5 (violates CHECK constraint)
+INSERT INTO Products (product_id, name, price, stock) 
+VALUES (1, 'Laptop', 999, -5); -- ERROR! Check constraint violated!
+```
+
+**In MongoDB:**
+MongoDB is **schemaless**, meaning it doesn't enforce data types automatically. You can store a number in one document and a string in another for the same field!
+
+```javascript
+// This is ALLOWED in MongoDB!
+db.products.insertOne({ name: "Laptop", price: 999 });   // price is a number
+db.products.insertOne({ name: "Mouse", price: "25" });    // price is a STRING!
+```
+
+**How to enforce it in MongoDB:**
+Use **Schema Validation** (available in MongoDB 3.6+). This lets you enforce rules at the database level.
+
+```javascript
+db.createCollection("products", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["name", "price"],
+         properties: {
+            name: { bsonType: "string" },
+            price: { bsonType: "double" }
+         }
+      }
+   }
+});
+
+// Now this will FAIL because price must be a number
+db.products.insertOne({ name: "Mouse", price: "25" }); // ERROR!
+```
+
+---
+
+## 4. User-Defined Integrity (Business Rules)
+
+### The Tool: `CHECK` Constraints and Application Logic
+
+These are rules specific to your company's business logic.
+
+**Example 1: Age Restriction (SQL)**
+```sql
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT CHECK (age >= 18)  -- You must be 18 or older
+);
+
+-- This FAILS because user is under 18
+INSERT INTO Users (user_id, name, age) VALUES (1, 'Bob', 16); -- ERROR!
+```
+
+**Example 2: Status Flow (MongoDB)**
+In MongoDB, you enforce this in your application logic:
+
+```javascript
+// Prevent updating a "cancelled" order to "shipped"
+function updateOrderStatus(orderId, newStatus) {
+    const order = db.orders.findOne({ _id: orderId });
+    if (order.status === "cancelled" && newStatus === "shipped") {
+        throw new Error("Cannot ship a cancelled order!");
+    }
+    db.orders.updateOne({ _id: orderId }, { $set: { status: newStatus } });
+}
+```
+
+---
+
+## The Big Comparison: SQL vs MongoDB Constraints
+
+| Constraint | SQL | MongoDB |
+| :--- | :--- | :--- |
+| **Primary Key** | `PRIMARY KEY` | Automatically on `_id` |
+| **Unique Constraint** | `UNIQUE` | `createIndex({ field: 1 }, { unique: true })` |
+| **Foreign Key** | `FOREIGN KEY` | ❌ Not built-in (enforce in app code) |
+| **Data Type Enforcement** | Strict (INT, VARCHAR, DATE) | ❌ Schemaless (but can use Validation) |
+| **Check Constraints** | `CHECK` | ❌ Not built-in (enforce in app code) |
+| **Required Fields** | `NOT NULL` | Validation rules (optional) |
+
+---
+
+## The Golden Rule of Data Integrity
+
+> **"The database should be the last line of defense, not the first."**
+
+- **In SQL:** You enforce rules at the database level (constraints). The database will **never** let bad data in, no matter how buggy your app code is.
+- **In MongoDB:** You enforce rules at the **application level**. The database trusts you, but you must be careful.
+
+---
+
+## Your Practice Task
+
+You are building a **Library Management System**. Write the schema with constraints:
+
+**Entities:**
+- **Books:** `book_id`, `title`, `author`, `isbn` (must be unique), `published_year` (must be between 1900 and 2025).
+- **Members:** `member_id`, `name`, `email` (must be unique), `join_date` (must be today or in the past).
+- **Loans:** `loan_id`, `book_id` (must exist in Books), `member_id` (must exist in Members), `loan_date`, `return_date` (must be after loan_date).
+
+**Questions:**
+1. Write the SQL schema with all constraints.
+2. How would you enforce this in MongoDB?
+3. What happens if a member tries to borrow a book that is already loaned out? (This is a business rule—how would you enforce it?)
+
+---
+
+## Summary Cheat Sheet
+
+| Integrity Type | SQL Tool | MongoDB Tool |
+| :--- | :--- | :--- |
+| **No Duplicates** | `PRIMARY KEY`, `UNIQUE` | `_id`, Unique Indexes |
+| **No Orphans** | `FOREIGN KEY` | Application-level checks |
+| **Valid Data Types** | `INT`, `VARCHAR`, `DATE` | Schema Validation (optional) |
+| **Business Rules** | `CHECK` constraints | Application logic |
+
+---
