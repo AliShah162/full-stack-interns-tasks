@@ -1,0 +1,12 @@
+{
+  "name": "ali",
+  "version": "1.0.0",
+  "description": "this is my first node package",
+  "license": "ISC",
+  "author": "ali",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
